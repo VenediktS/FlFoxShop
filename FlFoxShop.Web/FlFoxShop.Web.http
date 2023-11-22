@@ -1,0 +1,6 @@
+@FlFoxShop.Web_HostAddress = http://localhost:5213
+
+GET {{FlFoxShop.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
