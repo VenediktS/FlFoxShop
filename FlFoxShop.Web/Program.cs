@@ -1,3 +1,6 @@
+using FlFoxShop.DataBase;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace FlFoxShop.Web
 {
@@ -13,6 +16,11 @@ namespace FlFoxShop.Web
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+
+            builder.Services.AddDbContext<ShopDbContext>(options => {
+                options.UseNpgsql(builder.Configuration.GetConnectionString("LocalDbConnection"));
+            });
 
             var app = builder.Build();
 
