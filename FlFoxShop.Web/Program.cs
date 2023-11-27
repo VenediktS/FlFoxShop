@@ -8,6 +8,8 @@ namespace FlFoxShop.Web
     {
         public static void Main(string[] args)
         {
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -22,6 +24,15 @@ namespace FlFoxShop.Web
                 options.UseNpgsql(builder.Configuration.GetConnectionString("LocalDbConnection"));
             });
 
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: MyAllowSpecificOrigins,
+            //                      policy =>
+            //                      {
+            //                          policy.WithOrigins("http://localhost:4200/");
+            //                      });
+            //});
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -35,6 +46,10 @@ namespace FlFoxShop.Web
 
             app.UseAuthorization();
 
+            app.UseCors(x => x
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
 
             app.MapControllers();
 
