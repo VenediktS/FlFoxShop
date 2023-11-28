@@ -2,6 +2,9 @@
 
 namespace FlFoxShop.Common.DBModels
 {
+    /// <summary>
+    /// Базовый класс для товаров
+    /// </summary>
     public class Product
     {
         public long Id { get; set; }

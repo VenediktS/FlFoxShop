@@ -48,11 +48,11 @@ namespace FlFoxShop.DataBase.Migrations
 
             modelBuilder.Entity("FlFoxShop.Common.DBModels.ProductPurpose", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -102,9 +102,6 @@ namespace FlFoxShop.DataBase.Migrations
                     b.Property<long?>("ProductPurposeId")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("ProductPurposeId1")
-                        .HasColumnType("integer");
-
                     b.Property<string>("SmallDescription")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
@@ -133,7 +130,7 @@ namespace FlFoxShop.DataBase.Migrations
 
                     b.HasIndex("CreateddById");
 
-                    b.HasIndex("ProductPurposeId1");
+                    b.HasIndex("ProductPurposeId");
 
                     b.HasIndex("UpdatedById");
 
@@ -192,7 +189,7 @@ namespace FlFoxShop.DataBase.Migrations
 
                     b.HasOne("FlFoxShop.Common.DBModels.ProductPurpose", "ProductPurpose")
                         .WithMany()
-                        .HasForeignKey("ProductPurposeId1");
+                        .HasForeignKey("ProductPurposeId");
 
                     b.HasOne("FlFoxShop.Common.DBModels.UsersModels.User", "UpdatedBy")
                         .WithMany()

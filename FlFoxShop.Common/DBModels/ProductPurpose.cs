@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace FlFoxShop.Common.DBModels
 {
+    /// <summary>
+    /// Назначение продукта
+    /// </summary>
     public class ProductPurpose
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public required string Title { get; set; }
     }
 }

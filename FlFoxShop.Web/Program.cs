@@ -1,6 +1,11 @@
 using FlFoxShop.DataBase;
+using FlFoxShop.Domain.ProductRequests;
+
+using MediatR;
 
 using Microsoft.EntityFrameworkCore;
+
+using System.Reflection;
 
 namespace FlFoxShop.Web
 {
@@ -12,10 +17,11 @@ namespace FlFoxShop.Web
 
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(typeof(AddTextileRequest).Assembly);
+            });
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

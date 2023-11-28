@@ -31,7 +31,7 @@ namespace FlFoxShop.DataBase.Migrations
                 name: "shop_Product_Purposes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
@@ -82,7 +82,6 @@ namespace FlFoxShop.DataBase.Migrations
                     Price = table.Column<decimal>(type: "numeric", nullable: true),
                     BrendId = table.Column<long>(type: "bigint", nullable: true),
                     ProductPurposeId = table.Column<long>(type: "bigint", nullable: true),
-                    ProductPurposeId1 = table.Column<int>(type: "integer", nullable: true),
                     BrandId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
@@ -98,8 +97,8 @@ namespace FlFoxShop.DataBase.Migrations
                         principalTable: "shop_Brands",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_shop_Textiles_shop_Product_Purposes_ProductPurposeId1",
-                        column: x => x.ProductPurposeId1,
+                        name: "FK_shop_Textiles_shop_Product_Purposes_ProductPurposeId",
+                        column: x => x.ProductPurposeId,
                         principalTable: "shop_Product_Purposes",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -127,9 +126,9 @@ namespace FlFoxShop.DataBase.Migrations
                 column: "CreateddById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_shop_Textiles_ProductPurposeId1",
+                name: "IX_shop_Textiles_ProductPurposeId",
                 table: "shop_Textiles",
-                column: "ProductPurposeId1");
+                column: "ProductPurposeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_shop_Textiles_UpdatedById",
